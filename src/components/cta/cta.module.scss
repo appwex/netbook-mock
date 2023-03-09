@@ -1,0 +1,249 @@
+@import '../../styles/common.scss';
+// @import '../../styles/globals.scss';
+@import '../../styles/colors.scss';
+@import '../../styles/mixins.scss';
+@import '../../styles/animations.scss';
+@import '../../styles/link.scss';
+
+// google fonts
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600&display=swap');
+
+.container {
+  font-family: 'Inter', sans-serif;
+  background: linear-gradient(312deg, #d4e7fe -15%, #ffffff 79%);
+}
+.section {
+  max-width: 1170px;
+  margin: 0 auto;
+  padding: 0 10px;
+
+  @include breakpoint-down(medium) {
+    padding: 0 20px;
+  }
+
+  @include breakpoint-down(small) {
+    padding: 0 50px;
+  }
+}
+.line {
+  height: 1px;
+  width: 100%;
+  background-color: rgba(33, 123, 244, 0.1);
+}
+
+// navigation bar
+.navbar {
+  height: 90px;
+  display: flex;
+  align-items: center;
+  color: #656464;
+  font-family: 'Inter';
+  // position: relative;
+
+  .navbarLogo {
+    height: 34px;
+    width: 34px;
+    margin-right: 6px;
+  }
+  h3 {
+    color: #2b2b39;
+    margin-left: 6px;
+    margin-right: 72px;
+    font-size: 24px;
+    font-family: 'Poppins', sans-serif;
+  }
+  .navbarMenu {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+    margin-right: auto;
+    position: relative;
+
+    @include breakpoint-down(small) {
+      margin-right: 0;
+      width: 52vw;
+      transition: 0.8s ease-in-out;
+      position: absolute;
+      top: 70px;
+      right: -100vw;
+      visibility: hidden;
+
+      &.expend {
+        width: 52vw;
+        right: 0;
+        visibility: visible;
+      }
+    }
+
+    .navbarItem {
+      list-style: none;
+      transition: all 0.2s ease-in-out;
+      font-family: 'Inter';
+      font-size: 14px;
+      letter-spacing: 0.01em;
+
+      &:hover {
+        transform: scale(1.1);
+      }
+      &:active {
+        transform: translateY(1px) scale(1.1);
+      }
+
+      svg {
+        margin-left: 5px;
+      }
+    }
+  }
+  .boldDark {
+    font-weight: 600;
+    color: #2b2b39;
+  }
+
+  .navbarSearchForm {
+    display: flex;
+    align-items: center;
+    margin-right: 2px;
+    position: relative;
+
+    @include breakpoint-down(medium) {
+      display: none;
+    }
+
+    .navbarFind {
+      margin-right: 8px;
+    }
+    .navbarSearch {
+      border: none;
+      background: transparent;
+      outline: none;
+      font-size: 12px;
+      font-family: inherit;
+      color: #686868;
+    }
+
+    &::before {
+      position: absolute;
+      content: '';
+      bottom: -18px;
+      width: 70%;
+      height: 1px;
+      background-color: #e5e5e5;
+    }
+  }
+  .navbarLogin {
+    padding: 18px 43px;
+    font-weight: 500;
+    font-size: 12px;
+    border-radius: 14px;
+    box-shadow: 0 6px 12px rgba(33, 123, 244, 0.3);
+
+    @include breakpoint-down(small) {
+      display: none;
+    }
+  }
+}
+
+// hero
+.hero {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  height: 656px;
+
+  @include breakpoint-down(medium) {
+    grid-template-columns: 2fr 1fr;
+  }
+  @include breakpoint-down(small) {
+    grid-template-columns: 1fr;
+    text-align: center;
+    height: auto;
+    padding: 20px 0;
+  }
+  .heroInfo {
+    .heroBtnComunity {
+      padding: 12px 30px;
+      margin-bottom: 20px;
+      background: rgb(33, 123, 244, 0.1);
+      font-weight: 500;
+      font-size: 12px;
+      color: #217bf4;
+    }
+    .mainHeader {
+      font-size: 56px;
+      color: #0a093d;
+      margin-bottom: 20px;
+
+      @include breakpoint-down(medium) {
+        grid-template-columns: 1/-1;
+        font-size: 50px;
+      }
+    }
+    p {
+      font-size: 18px;
+      line-height: 1.6;
+      color: #656464;
+      margin-bottom: 42px;
+      width: 85%;
+
+      @include breakpoint-down(small) {
+        width: 100%;
+      }
+    }
+    .heroBtnAbout {
+      box-shadow: 0 6px 12px rgba(33, 123, 244, 0.3);
+      padding: 24px 42px;
+      font-size: 14px;
+      border-radius: 14px;
+      margin-right: 18px;
+    }
+    .heroBtnInvite {
+      border: 1px solid #217bf4;
+      background: transparent;
+      color: #217bf4;
+      padding: 24px 42px;
+      font-size: 14px;
+      border-radius: 14px;
+    }
+  }
+}
+
+// hamburger menu
+.mobileNav {
+  display: none;
+
+  @include breakpoint-down(small) {
+    display: block;
+    cursor: pointer;
+    position: absolute;
+    top: 2rem;
+    right: 2rem;
+    transition: 0.5s ease;
+    z-index: 99;
+
+    span {
+      display: block;
+      width: 33px;
+      height: 2px;
+      background-color: #2b2b39;
+      transition: 0.5s ease;
+    }
+
+    span:not(:first-child) {
+      margin-top: 0.5rem;
+    }
+
+    &.show {
+      transform: rotate(180deg);
+
+      :nth-child(2) {
+        opacity: 0;
+      }
+      :first-child {
+        transform: rotate(45deg) translate(3px, 7px);
+      }
+      :last-child {
+        transform: rotate(-45deg) translate(7px, -12px);
+      }
+    }
+  }
+}
